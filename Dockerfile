@@ -1,12 +1,15 @@
-FROM node:20-alpine
+FROM node:18-alpine
 
 WORKDIR /app
 
+# Копируем package.json и package-lock.json из корня проекта
 COPY package*.json ./
+
+# Устанавливаем зависимости
 RUN npm ci --only=production
 
-COPY . .
+# Копируем исходный код из папки src
+COPY src/ ./src/
 
-EXPOSE 3000
-
-CMD ["npm", "start"]
+# Указываем, что точка входа — файл index.js внутри src
+CMD ["node", "src/index.js"]
