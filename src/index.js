@@ -8,8 +8,6 @@ if (!token) {
     process.exit(1);
 }
 
-console.log('data => ', process.env.DB_PASSWORD);
-
 // Настройки подключения к PostgreSQL
 const pool = new Pool({
     host: process.env.DB_HOST,
